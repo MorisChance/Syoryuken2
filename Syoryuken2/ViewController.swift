@@ -8,12 +8,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var charaImage: UIImageView!
+    var imageArrayAttack : Array<UIImage> = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let initialImage = UIImage(named: "attack1")
+        charaImage.image = initialImage
+        while let attackImage = UIImage(named: "attack\(imageArrayAttack.count+1)") {
+            imageArrayAttack.append(attackImage)
+        }
     }
-
-
+    
+    @IBAction func btn(_ sender: Any) {
+        charaImage.animationImages = imageArrayAttack
+        charaImage.animationDuration = 1.5
+        charaImage.animationRepeatCount = 1
+        charaImage.startAnimating()
+    }
 }
-
